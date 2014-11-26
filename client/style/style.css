@@ -7,3 +7,8 @@ h2 {
   width: 55%;
   left: 23%;
 }
+
+.word {
+  position: relative;
+  left: 43%;
+}

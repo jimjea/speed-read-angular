@@ -9,9 +9,20 @@ angular.module('speed-read.reader',['ui.router'])
     })
 })
 
-.controller('ReaderController', function($scope, $state, Reader) {
+.controller('ReaderController', function($scope, $state, $timeout, Reader) {
   $scope.text = Reader.testText().text;
-  $scope.parse = Reader.parseText($scope.text).forEach(function(word) {
-    
-  })
-})
+  $scope.parse = Reader.parseText($scope.text);
+
+  var index = 0;
+  var length = $scope.parse.length;
+  $scope.oneWord = function() {
+    $scope.test = $scope.parse[index]
+    if (index < length) {
+      index++;
+      $timeout($scope.oneWord, 500);
+    } else {
+      $scope.test = "END OF READING";
+    }
+  }  
+
+});
