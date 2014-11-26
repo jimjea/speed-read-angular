@@ -9,8 +9,8 @@ angular.module('speed-read.singleword',['ui.router'])
     })
 })
 
-.controller('SingleWordController', function($scope, $timeout, Singleword) {
-  $scope.text = Singleword.testText().text;
+.controller('SingleWordController', function($scope, $timeout, Singleword, Main) {
+  $scope.text = Main.testText().text;
   $scope.parse = Singleword.parseText($scope.text);
 
   var index = 0;
