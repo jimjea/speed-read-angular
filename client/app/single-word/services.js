@@ -1,6 +1,6 @@
-angular.module('speed-read.readerService', [])
+angular.module('speed-read.singlewordService', [])
 
-.factory('Reader', function() {
+.factory('Singleword', function() {
   var parseText = function(text) {
     var split = text.split(' ');
     return split;

@@ -1,6 +1,6 @@
 angular.module('speed-read',[
-  'speed-read.reader',
-  'speed-read.readerService'
+  'speed-read.singleword',
+  'speed-read.singlewordService'
 ])
 
 .config(function($urlRouterProvider) {
