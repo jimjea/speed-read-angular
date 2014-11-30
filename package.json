@@ -1,13 +1,15 @@
 {
-  "name": "Speed-Read-Angular",
+  "name": "speed-read-angular",
   "version": "0.0.0",
-  "description": "Speed Reading App in Angular",
+  "description": "Gmail in Angular",
   "main": "index.js",
   "dependencies": {
     "bcrypt": "^0.8.0",
     "body-parser": "^1.6.6",
-    "bookshelf": "^0.7.7",
     "express": "^4.8.6",
+    "jwt-simple": "~0.2.0",
+    "mongoose": "^3.8.15",
+    "mysql": "^2.4.3"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jimjea/speed-read-angular/issues"
+    "url": "https://github.com/jimjea/gmail-angular/issues"
   },
-  "homepage": "https://github.com/jimjea/speed-read-angular"
+  "homepage": "https://github.com/jimjea/gmail-angular"
 }

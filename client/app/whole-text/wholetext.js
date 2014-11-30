@@ -14,8 +14,8 @@ angular.module('speed-read.wholetext', ['ui.router'])
 })
 
 .directive('textScanner', function($interval) {
-  function highlight(scope, element, attrs) {
-    console.log(element[0].textContent)
+  function link(scope, element, attrs) {
+    // element.css('border', '1px solid black')
     // need to access the innerhtml (currently returning {{text}})
     // split the text
     // iterate through text
@@ -28,6 +28,6 @@ angular.module('speed-read.wholetext', ['ui.router'])
     //   wholeText: '='
     // },
     // templateUrl: 'app/whole-text/highlight.html',
-    highlight: highlight
+    link: link
   }
 })
