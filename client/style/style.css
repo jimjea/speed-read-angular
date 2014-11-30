@@ -1,14 +1,44 @@
 h2 {
+  width: 100%;
   text-align: center;
+}
+
+.href {
+  width: 100%;
+}
+
+a {
+  position: relative;
+/*  width: 50%;
+  margin: 0 auto;*/
+  left: 42%;
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 5px;
 }
 
 .text {
   position: absolute;
   width: 55%;
   left: 23%;
+  top: 15%;
 }
 
 .word {
   position: relative;
-  left: 43%;
+  font-size: 40px;
+  text-align: center;
 }
+
+.wholetext {
+  font-size: 25px;
+}
+
+/*.highlight {
+  position: fixed;
+  border: 1px solid black;
+  height: 30px;
+  width: 200px;
+  background-color: yellow;
+  z-index: -10;
+}*/
