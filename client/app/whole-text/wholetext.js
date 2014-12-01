@@ -9,25 +9,42 @@ angular.module('speed-read.wholetext', ['ui.router'])
     })
 })
 
-.controller('WholeTextController', function($scope, Main) {
-  $scope.text = Main.testText().text.split(' ');
+.controller('WholeTextController', function($scope, Main, $timeout) {
+  var text = Main.testText().text.split(' ');
+  var index = 0;
+  var length = text.length;
+
+  $scope.text = text.join(' ');
+
+  $scope.highlighter = function() {
+    $scope.text = text.join(' ');
+    if (index < length) {
+      text[index] = 'highlight';
+      index++;
+      $timeout($scope.highlighter, 300);
+    } else {
+      $scope.text = "END OF READING";
+    }
+  }
+
 })
 
-.directive('textScanner', function($interval) {
+.directive('textScanner', function() {
   function link(scope, element, attrs) {
-    // element.css('border', '1px solid black')
-    // need to access the innerhtml (currently returning {{text}})
-    // split the text
-    // iterate through text
-      // toggle classes to highlight words in text
+    var text;
+
+    function highlight() {
+      element.text(text);
+    };
+
+    scope.$watch(attrs.textScanner, function(value) {
+      text = value;
+      highlight();
+    });
 
   }
 
   return {
-    // scope: {
-    //   wholeText: '='
-    // },
-    // templateUrl: 'app/whole-text/highlight.html',
     link: link
   }
 })

@@ -19,7 +19,7 @@ angular.module('speed-read.singleword',['ui.router'])
     $scope.word = $scope.parse[index]
     if (index < length) {
       index++;
-      $timeout($scope.oneWord, 500);
+      $timeout($scope.oneWord, 300);
     } else {
       $scope.word = "END OF READING";
     }
