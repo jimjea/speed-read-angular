@@ -12,29 +12,37 @@ angular.module('speed-read.wholetext', ['ui.router'])
 .controller('WholeTextController', function($scope, Main, $timeout) {
   var text = Main.testText().text.split(' ');
   var index = 0;
+  var tail = -1;
   var length = text.length;
+  var textSpan = [];
+  // turning all words into a span tag, and pushing it to an array
+  for (var i = 0; i < length; i++) {
+    textSpan.push(angular.element('<span class=' + i + '>').text(text[i] + ' '));
+  }
 
-  $scope.text = text.join(' ');
+  $scope.text = textSpan;
 
   $scope.highlighter = function() {
-    $scope.text = text.join(' ');
     if (index < length) {
-      text[index] = 'highlight';
+      $('.' + index).css('background-color', 'yellow');
+      $('.' + tail).css('background-color', 'white');
       index++;
-      $timeout($scope.highlighter, 300);
-    } else {
-      $scope.text = "END OF READING";
+      tail++;
+      $timeout($scope.highlighter, 270);
     }
   }
 
 })
 
-.directive('textScanner', function() {
+.directive('textScanner', function($timeout) {
   function link(scope, element, attrs) {
     var text;
 
     function highlight() {
-      element.text(text);
+      // var currentWord = angular.element('<div>').text(text);
+      for (var i = 0; i < text.length; i++) {
+        element.append(text[i]);
+      }
     };
 
     scope.$watch(attrs.textScanner, function(value) {
@@ -48,3 +56,29 @@ angular.module('speed-read.wholetext', ['ui.router'])
     link: link
   }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+    // highlighter;
+
+// function highlighter() {
+//   var newText = text.split(' ');
+//   var index = 0;
+//   var length = newText.length;
+//   text = newText.join(' ');
+//   newText[index] = newText[index].toUpperCase();
+//   if (index < length) {
+//     index++;
+//     $timeout(highlighter, 300);
+//     highlight();
+//   }
+// }
