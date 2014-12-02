@@ -12,6 +12,7 @@ angular.module('speed-read.wholetext', ['ui.router'])
 .controller('WholeTextController', function($scope, Main, $timeout) {
   var text = Main.testText().text.split(' '); // pull back text data from factory
   var index = 0;
+  var fast = 1;
   var tail = -1;
   var length = text.length;
   var textSpan = [];
@@ -24,9 +25,11 @@ angular.module('speed-read.wholetext', ['ui.router'])
   $scope.highlighter = function() { // highlighter function, will move into directive
     if (index < length) {
       $('.' + index).css('background-color', 'yellow');
+      $('.' + fast).css('background-color', 'yellow');
       $('.' + tail).css('background-color', 'white');
       index++;
       tail++;
+      fast++;
       $timeout($scope.highlighter, 270);
     }
   }
@@ -54,29 +57,3 @@ angular.module('speed-read.wholetext', ['ui.router'])
     link: link
   }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-    // highlighter;
-
-// function highlighter() {
-//   var newText = text.split(' ');
-//   var index = 0;
-//   var length = newText.length;
-//   text = newText.join(' ');
-//   newText[index] = newText[index].toUpperCase();
-//   if (index < length) {
-//     index++;
-//     $timeout(highlighter, 300);
-//     highlight();
-//   }
-// }
