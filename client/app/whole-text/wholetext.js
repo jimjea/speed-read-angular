@@ -10,19 +10,18 @@ angular.module('speed-read.wholetext', ['ui.router'])
 })
 
 .controller('WholeTextController', function($scope, Main, $timeout) {
-  var text = Main.testText().text.split(' ');
+  var text = Main.testText().text.split(' '); // pull back text data from factory
   var index = 0;
   var tail = -1;
   var length = text.length;
   var textSpan = [];
-  // turning all words into a span tag, and pushing it to an array
-  for (var i = 0; i < length; i++) {
+  for (var i = 0; i < length; i++) { // turning all words into a span tag, and pushing it to an array
     textSpan.push(angular.element('<span class=' + i + '>').text(text[i] + ' '));
   }
 
   $scope.text = textSpan;
 
-  $scope.highlighter = function() {
+  $scope.highlighter = function() { // highlighter function, will move into directive
     if (index < length) {
       $('.' + index).css('background-color', 'yellow');
       $('.' + tail).css('background-color', 'white');
@@ -38,8 +37,7 @@ angular.module('speed-read.wholetext', ['ui.router'])
   function link(scope, element, attrs) {
     var text;
 
-    function highlight() {
-      // var currentWord = angular.element('<div>').text(text);
+    function highlight() { // append all words to the directive
       for (var i = 0; i < text.length; i++) {
         element.append(text[i]);
       }
