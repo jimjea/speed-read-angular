@@ -21,25 +21,22 @@ angular.module('speed-read.wholetext', ['ui.router'])
 
     function highlight() { // append all words to the directive
       var split = text.split(' ');
-      var index = 0;
-      var tail = -1;
       var length = split.length;
       for (var i = 0; i < length; i++) { // turning all words into a span tag, and appending them to the dom
         element.append(angular.element('<span class=' + i + '>').text(split[i] + ' '));
       }
-      var highlighter = function() {
+      var highlighter = function(index) {
         if (index < length) {
-          $('.' + index).css('background-color', 'yellow');
-          $('.' + tail).css('background-color', 'white');
+          angular.element(element[0].children[index]).css('background-color', 'yellow')
+          angular.element(element[0].children[index-1]).css('background-color', 'white')
           index++;
-          tail++;
-          $timeout(highlighter, 270);
+          $timeout(function(){highlighter(index)}, 270);
         }
       }
-      highlighter()
+      highlighter(0)
     };
 
-    scope.$watch(attrs.textScanner, function(value) {
+    scope.$watch(attrs.textHighlighter, function(value) { // looks for an attribute value that connects with the controller's scope, pulling in the text from the scope
       text = value;
       highlight();
     });
