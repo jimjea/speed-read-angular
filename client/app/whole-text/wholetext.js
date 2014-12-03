@@ -10,21 +10,21 @@ angular.module('speed-read.wholetext', ['ui.router'])
 })
 
 .controller('WholeTextController', function($scope, Main, $timeout) {
-
   $scope.text = {
-    text: Main.testText().text, // pull text form factory. The text variable will be passed into the directive
-    speed: 160,
-    spread: 1
+    text: Main.testText().text,
+    speed: $scope.speed,
+    spread: $scope.spread
+  }
+
+  $scope.test = function() {
+    console.log($scope.speed)
   }
 })
 
 .directive('textHighlighter', function($timeout) {
   function link(scope, element, attrs) {
-    var text,
-        speed,
-        spread;
 
-    function highlight() { // append all words to the directive
+    function highlight(text, speed, spread) { // append all words to the directive
       var split = text.split(' ');
       var length = split.length;
       for (var i = 0; i < length; i++) { // turning all words into a span tag, and appending them to the dom
@@ -32,10 +32,12 @@ angular.module('speed-read.wholetext', ['ui.router'])
       }
       var highlighter = function(index) { // highlights words
         if (index < length) {
-          angular.element(element[0].children[index]).css('background-color', 'yellow')
-          angular.element(element[0].children[index-1]).css('background-color', 'white')
+          angular.element(element[0].children[index]).css('background-color', 'yellow');
+          angular.element(element[0].children[index-1]).css('background-color', 'white');
           index++;
           $timeout(function(){highlighter(index)}, speed || 200);
+        } else {
+          angular.element(element[0].children[index-1]).css('background-color', 'white');
         }
       }
 
@@ -49,7 +51,7 @@ angular.module('speed-read.wholetext', ['ui.router'])
       text = value.text;
       speed = value.speed;
       spread = value.spread;
-      highlight();
+      highlight(text, speed, spread);
     });
 
   }

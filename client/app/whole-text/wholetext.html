@@ -1,5 +1,13 @@
 <div class="href"><a href="/#/singleword">Single Word Spreeder</a></div>
-<p>Click anywhere on the text to start speed reading</p>
+<p ng-click="test()">Click anywhere on the text to start speed reading</p>
+<form>
+  <select name="cars">
+    <option ng-model="speed" value="100">100</option>
+    <option ng-model="speed">150</option>
+    <option ng-model="speed">200</option>
+    <option ng-model="speed">500</option>
+  </select>
+</form>
 <div class="text wholetext">
   <span text-highlighter="text" class='highlight'></span>
 </div>
