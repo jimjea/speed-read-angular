@@ -26,3 +26,4 @@ angular.module('speed-read.singleword',['ui.router'])
   }  
 
 })
+

@@ -31,14 +31,12 @@ a {
 }
 
 .wholetext {
+  position: absolute;
+  top: 20%;
   font-size: 25px;
 }
 
-/*.highlight {
-  position: fixed;
-  border: 1px solid black;
-  height: 30px;
-  width: 200px;
-  background-color: yellow;
-  z-index: -10;
-}*/
+p {
+  text-align: center;
+
+}
