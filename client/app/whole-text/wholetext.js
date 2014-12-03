@@ -23,14 +23,14 @@ angular.module('speed-read.wholetext', ['ui.router'])
       var split = text.split(' ');
       var length = split.length;
       for (var i = 0; i < length; i++) { // turning all words into a span tag, and appending them to the dom
-        element.append(angular.element('<span class=' + i + '>').text(split[i] + ' '));
+        element.append(angular.element('<span>').text(split[i] + ' '));
       }
-      var highlighter = function(index) {
+      var highlighter = function(index) { // highlights words
         if (index < length) {
           angular.element(element[0].children[index]).css('background-color', 'yellow')
           angular.element(element[0].children[index-1]).css('background-color', 'white')
           index++;
-          $timeout(function(){highlighter(index)}, 270);
+          $timeout(function(){highlighter(index)}, 160);
         }
       }
       highlighter(0)
